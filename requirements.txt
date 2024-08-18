@@ -1,2 +1,11 @@
 ipykernel
+ipywidgets
 python-dotenv
+datasets
+torch
+torchdata
+transformers
+evaluate
+rouge_score
+loralib
+peft

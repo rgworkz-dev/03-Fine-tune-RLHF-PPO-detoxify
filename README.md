@@ -1,79 +1,71 @@
-# Data Project Template
+# Fine-Tune FLAN-T5 with Reinforcement Learning (PPO) and PEFT to Generate Less-Toxic Summaries
 
-<a target="_blank" href="https://datalumina.com/">
-    <img src="https://img.shields.io/badge/Datalumina-Project%20Template-2856f7" alt="Datalumina Project" />
-</a>
+This repository contains a Jupyter notebook that demonstrates how to fine-tune a FLAN-T5 model to generate less toxic content with Meta AI's hate speech reward model. The reward model is a binary classifier that predicts either "not hate" or "hate" for the given text. We will use Proximal Policy Optimization (PPO) to fine-tune and reduce the model's toxicity.
 
-## Cookiecutter Data Science
-This project template is a simplified version of the [Cookiecutter Data Science](https://cookiecutter-data-science.drivendata.org) template, created to suit the needs of Datalumina and made available as a GitHub template.
+## Overview
 
-## Adjusting .gitignore
+The notebook covers the following key steps:
 
-Ensure you adjust the `.gitignore` file according to your project needs. For example, since this is a template, the `/data/` folder is commented out and data will not be exlucded from source control:
+1. Loading and preprocessing the DialogSum dataset
+2. Setting up the FLAN-T5 model with PEFT (Parameter-Efficient Fine-Tuning)  
+3. Preparing the toxicity reward model and evaluator
+4. Fine-tuning the model using PPO to reduce toxicity
+5. Evaluating the model quantitatively and qualitatively
 
-```plaintext
-# exclude data from source control by default
-# /data/
-```
+## Key Components
 
-Typically, you want to exclude this folder if it contains either sensitive data that you do not want to add to version control or large files.
+- FLAN-T5: Base language model for summarization
+- PEFT: For efficient fine-tuning of the base model
+- Meta AI's RoBERTa-based hate speech model: Used as the reward model
+- PPO (Proximal Policy Optimization): RL algorithm for fine-tuning
+- Hugging Face Transformers & Datasets libraries
 
-## Duplicating the .env File
-To set up your environment variables, you need to duplicate the `.env.example` file and rename it to `.env`. You can do this manually or using the following terminal command:
+## Requirements
+
+- Python 3.7 or above
+- Jupyter Notebook
+- Hugging Face Transformers
+- Datasets
+- PEFT (Parameter-Efficient Fine-Tuning)
+
+You can install the required dependencies with the following command:
 
 ```bash
-cp .env.example .env # Linux, macOS, Git Bash, WSL
-copy .env.example .env # Windows Command Prompt
+pip install -r requirements.txt
 ```
 
-This command creates a copy of `.env.example` and names it `.env`, allowing you to configure your environment variables specific to your setup.
+## How to Run
 
+1. Clone this repository:
+   ```bash
+   git clone https://github.com/rgworkz-dev/03-Fine-tune-RLHF-PPO-detoxify.git
+   ```
 
-## Project Organization
+2. Install the required dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-```
-├── LICENSE            <- Open-source license if one is chosen
-├── README.md          <- The top-level README for developers using this project
-├── data
-│   ├── external       <- Data from third party sources
-│   ├── interim        <- Intermediate data that has been transformed
-│   ├── processed      <- The final, canonical data sets for modeling
-│   └── raw            <- The original, immutable data dump
-│
-├── models             <- Trained and serialized models, model predictions, or model summaries
-│
-├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
-│                         the creator's initials, and a short `-` delimited description, e.g.
-│                         `1.0-jqp-initial-data-exploration`
-│
-├── references         <- Data dictionaries, manuals, and all other explanatory materials
-│
-├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
-│   └── figures        <- Generated graphics and figures to be used in reporting
-│
-├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
-│                         generated with `pip freeze > requirements.txt`
-│
-└── src                         <- Source code for this project
-    │
-    ├── __init__.py             <- Makes src a Python module
-    │
-    ├── config.py               <- Store useful variables and configuration
-    │
-    ├── dataset.py              <- Scripts to download or generate data
-    │
-    ├── features.py             <- Code to create features for modeling
-    │
-    │    
-    ├── modeling                
-    │   ├── __init__.py 
-    │   ├── predict.py          <- Code to run model inference with trained models          
-    │   └── train.py            <- Code to train models
-    │
-    ├── plots.py                <- Code to create visualizations 
-    │
-    └── services                <- Service classes to connect with external platforms, tools, or APIs
-        └── __init__.py 
-```
+3. Open the notebook:
+   ```bash
+   jupyter notebook fine_tune_model_to_detoxify_summaries.ipynb
+   ```
 
---------
+4. Run the cells in the notebook sequentially to fine-tune the model and evaluate its performance.
+
+## Results
+
+The notebook demonstrates a significant reduction in the toxicity of generated summaries after fine-tuning, as measured by:
+
+1. Quantitative improvement in toxicity scores
+2. Qualitative comparison of summaries before and after detoxification
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+- Hugging Face for providing the pre-trained FLAN-T5 model and tools.
+- Meta AI
+- The open-source community for datasets and support.
