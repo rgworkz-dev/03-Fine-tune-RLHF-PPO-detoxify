@@ -27,6 +27,7 @@ The notebook covers the following key steps:
 - Hugging Face Transformers
 - Datasets
 - PEFT (Parameter-Efficient Fine-Tuning)
+- TRL (Transformer Reinforcement Learning) library
 
 You can install the required dependencies with the following command:
 

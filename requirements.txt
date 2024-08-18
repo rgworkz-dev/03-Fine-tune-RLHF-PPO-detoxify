@@ -9,3 +9,4 @@ evaluate
 rouge_score
 loralib
 peft
+git+https://github.com/lvwerra/trl.git@25fa1bd
